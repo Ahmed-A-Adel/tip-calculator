@@ -1,0 +1,23 @@
+{
+  "name": "tip-calculator-app-main",
+  "version": "1.0.0",
+  "description": "calculator challange",
+  "main": "index.js",
+  "scripts": {
+    "sass:compiler": "sass --watch ./src/sass/main.scss style.css",
+    "start": "live-server"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Ahmed-A-Adel/tip-calculator.git"
+  },
+  "author": "'Ahmed",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Ahmed-A-Adel/tip-calculator/issues"
+  },
+  "homepage": "https://github.com/Ahmed-A-Adel/tip-calculator#readme",
+  "dependencies": {
+    "live-server": "^1.2.1"
+  }
+}
