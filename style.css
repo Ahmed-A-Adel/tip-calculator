@@ -2,6 +2,10 @@
 (Restes , Variabels, Mixins, Utilty classes)
 _____________________________________________
 */
+h1 {
+  font-family: "Space Mono", monospace;
+}
+
 /*
 Everything that reuseabel.
 _____________________________
@@ -13,6 +17,12 @@ All the sass code handlling the layout.
 _______________________________________
 (Header , Footer, Container, The grid system)
 _____________________________________________
+*/
+/*
+The designs were created to the following widths:
+
+- Mobile: 375px
+- Desktop: 1440px
 */
 
 /*# sourceMappingURL=style.css.map */
