@@ -28,78 +28,78 @@
       <img class="logo" src="./src/images/logo.svg" alt="" />
     </header>
     <main class="main-container">
-      <section class="section-center">
-        <!-- single article -->
-        <article class="calculation-bill article">
-          <form class="form">
-            <div class="form__total-bill">
-              <label for="total">bill</label>
-              <br />
-              <input
-                type="text"
-                id="total"
-                class="form__total-input"
-                name="total"
-              />
-              <span class="doller-icon"
-                ><img src="./src/images/icon-dollar.svg" alt=""
-              /></span>
+      <!-- single article -->
+      <article class="calculation-bill article">
+        <form method="GET" class="form">
+          <div class="form__total-bill">
+            <label for="total">bill</label>
+            <br />
+            <input
+              type="text"
+              id="total"
+              class="form__total-input"
+              name="total"
+            />
+            <span class="doller-icon"
+              ><img src="./src/images/icon-dollar.svg" alt=""
+            /></span>
+          </div>
+          <div class="form__select-tip">
+            <label class="form__select-label">select tip %</label>
+            <div class="btn-container">
+              <button type="button" class="btn btn-all" data-id="5%">5%</button>
+              <button type="button" class="btn btn-all" data-id="10%">
+                10%
+              </button>
+              <button type="button" class="btn btn-all" data-id="15%">
+                15%
+              </button>
+              <button type="button" class="btn btn-all" data-id="25%">
+                25%
+              </button>
+              <button type="button" class="btn btn-all" data-id="50%">
+                50%
+              </button>
+              <button type="button" class="btn btn-custom" data-id="custom">
+                custom
+              </button>
             </div>
-            <div class="form__select-tip">
-              <label class="form__select-label">select tip %</label>
-              <div class="btn-container">
-                <button type="button" class="btn btn-all" data-id="5%">
-                  5%
-                </button>
-                <button type="button" class="btn btn-all" data-id="10%">
-                  10%
-                </button>
-                <button type="button" class="btn btn-all" data-id="15%">
-                  15%
-                </button>
-                <button type="button" class="btn btn-all" data-id="25%">
-                  25%
-                </button>
-                <button type="button" class="btn btn-all" data-id="50%">
-                  50%
-                </button>
-                <button type="button" class="btn btn-custom" data-id="custom">
-                  custom
-                </button>
-              </div>
-            </div>
-            <div class="people-container">
-              <label for="people">number of people</label>
-              <br />
-              <input type="text" id="people" class="people-input" />
-              <span class="person-icon"
-                ><img src="./src/images/icon-person.svg" alt=""
-              /></span>
-            </div>
-          </form>
-        </article>
-        <!-- end of single article -->
+          </div>
+          <div class="people-container">
+            <label for="people">number of people</label>
+            <br />
+            <input type="text" id="people" class="people-input" />
+            <span class="person-icon"
+              ><img src="./src/images/icon-person.svg" alt=""
+            /></span>
+          </div>
+        </form>
+      </article>
+      <!-- end of single article -->
 
-        <!-- single article -->
-        <article class="article-2 article">
-          <div class="headings">
-            <div class="heading-left">
-              <p class="p-heading">tip amount</p>
-              <span class="span-subHeading">/person</span>
-            </div>
-            <h3 class="tip-output total">$25.23</h3>
+      <!-- single article -->
+      <article class="restults article">
+        <div class="restults__headings-block">
+          <div class="restults__headings-block--left">
+            <p class="restults__headings-block__p-heading">tip amount</p>
+            <span class="restults__headings-block__span-subHeading"
+              >/person</span
+            >
           </div>
-          <div class="headings">
-            <div class="heading-right">
-              <p class="p-heading">total</p>
-              <span class="span-subHeading">/person</span>
-            </div>
-            <h3 class="total-output total">$36.55</h3>
+          <h3 class="restults__tip-output restults__total">$25.23</h3>
+        </div>
+        <div class="restults__headings-block margin-big">
+          <div class="restults__headings-block--right">
+            <p class="restults__headings-block__p-heading">total</p>
+            <span class="restults__headings-block__span-subHeading"
+              >/person</span
+            >
           </div>
-          <button type="reset" class="btn-reset" id="-btn-reset">reset</button>
-        </article>
-        <!-- end of single article -->
-      </section>
+          <h3 class="restults__total-output restults__total">$36.55</h3>
+        </div>
+        <button type="reset" class="btn-reset" id="-btn-reset">reset</button>
+      </article>
+      <!-- end of single article -->
     </main>
   </body>
 </html>

@@ -11,43 +11,62 @@ The designs were created to the following widths:
 - Mobile: 375px
 - Desktop: 1440px
 */
+body {
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-template-rows: 8rem 1fr;
+  place-items: center;
+}
 .header {
   height: 7rem;
   width: 100%;
-}
-.logo {
-  position: relative;
-  @include centerItem;
-}
-.main-container {
   display: grid;
-  grid-template-columns: 1fr;
-  grid-template-rows: 1fr;
-  justify-content: center;
-}
-.section-center {
-  background: $White;
-  border-radius: 15px;
-  height: 82vh;
-  display: grid;
-  grid-template-columns: 1fr;
-  grid-template-rows: 1fr 1fr;
-  row-gap: 1rem;
-  //   justify-content: center;
-  text-transform: capitalize;
+  place-items: center;
 }
 
-.article {
+.main-container {
+  width: 25rem;
+  height: 45rem;
   background: $White;
+  border-radius: 15px;
+  text-transform: capitalize;
+  background: $White;
+  display: grid;
+  grid-template-columns: 1fr;
+  overflow: hidden;
 }
+
 .calculation-bill {
   color: $Dark-grayish-cyan-1;
   border-radius: 2rem;
+  background: $White;
 }
-.article-2 {
+.restults {
   padding: 1rem;
   background: $Very-dark-cyan;
   border-radius: 0.8rem;
+  &__headings-block {
+    display: grid;
+    grid-template-columns: 30% 1fr;
+    column-gap: 40%;
+    justify-content: space-between;
+    margin-bottom: 2rem;
+    padding-top: 1rem;
+    &__p-heading {
+      color: $White;
+    }
+    &__span-subHeading {
+      color: $Dark-grayish-cyan-1;
+    }
+  }
+  &__tip-output {
+    color: $primary-color;
+    font-size: 1.6rem;
+  }
+  &__total-output {
+    color: $primary-color;
+    font-size: 1.6rem;
+  }
 }
 .form {
   padding: 1rem;
@@ -131,33 +150,12 @@ The designs were created to the following widths:
   bottom: 0.4rem;
   left: 0.6rem;
 }
-.headings {
-  display: grid;
-  grid-template-columns: 30% 22%;
-  justify-content: space-between;
-  margin-bottom: 2rem;
-  padding-top: 1rem;
-}
-.p-heading {
-  color: $White;
-}
-.span-subHeading {
-  color: $Dark-grayish-cyan-1;
-}
-.tip-output {
-  color: $primary-color;
-  font-size: 1.6rem;
-}
-.total-output {
-  color: $primary-color;
-  font-size: 1.6rem;
-}
 .btn-reset {
   display: block;
   width: 100%;
   height: 2.6rem;
-  color: $Very-dark-cyan;
-  background: $Dark-grayish-cyan-2;
+  color: hsla(183, 100%, 15%, 0.658);
+  background: hsla(172, 67%, 45%, 0.425);
   border: none;
   outline: none;
   font-size: 1.2rem;
@@ -165,8 +163,58 @@ The designs were created to the following widths:
   border-radius: 5px;
   cursor: pointer;
 }
-.btn-reset:active,
-.btn-reset:visited {
+.btn-reset--active {
+  display: block;
+  width: 100%;
+  height: 2.6rem;
+  border: none;
+  outline: none;
+  font-size: 1.2rem;
+  text-transform: capitalize;
+  border-radius: 5px;
+  cursor: pointer;
   color: $Very-dark-cyan;
   background: $primary-color;
+  transition: $main-transition;
+}
+.btn-reset--active:hover {
+  color: hsl(183, 100%, 15%);
+  background: hsl(172, 67%, 65%);
+}
+
+@media screen and(max-width: 450px) {
+  .main-container {
+    width: 20rem;
+  }
+}
+@media screen and(min-width: 1140px) {
+  .main-container {
+    width: 58rem;
+    height: 30rem;
+    background: $White;
+    grid-template-columns: 25rem 25rem;
+    column-gap: 2rem;
+    place-items: center;
+    justify-content: center;
+  }
+  .calculation-bill {
+    width: 25rem;
+    height: 25rem;
+  }
+  .restults {
+    width: 28rem;
+    height: 25rem;
+  }
+  .btn-container {
+    grid-template-columns: 1fr 1fr 1fr;
+  }
+  .restults__total {
+    font-size: 2.6rem;
+  }
+  .restults__headings-block {
+    column-gap: 30%;
+  }
+  .margin-big {
+    margin-bottom: 6rem;
+  }
 }

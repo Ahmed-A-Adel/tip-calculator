@@ -35,49 +35,64 @@ The designs were created to the following widths:
 - Mobile: 375px
 - Desktop: 1440px
 */
+body {
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-template-rows: 8rem 1fr;
+  place-items: center;
+}
+
 .header {
   height: 7rem;
   width: 100%;
-}
-
-.logo {
-  position: relative;
-  top: 3.5rem;
-  left: 50%;
-  transform: translate(-50%, -50%);
+  display: grid;
+  place-items: center;
 }
 
 .main-container {
-  display: grid;
-  grid-template-columns: 1fr;
-  grid-template-rows: 1fr;
-  justify-content: center;
-}
-
-.section-center {
+  width: 25rem;
+  height: 45rem;
   background: white;
   border-radius: 15px;
-  height: 82vh;
+  text-transform: capitalize;
+  background: white;
   display: grid;
   grid-template-columns: 1fr;
-  grid-template-rows: 1fr 1fr;
-  row-gap: 1rem;
-  text-transform: capitalize;
-}
-
-.article {
-  background: white;
+  overflow: hidden;
 }
 
 .calculation-bill {
   color: #5e7a7d;
   border-radius: 2rem;
+  background: white;
 }
 
-.article-2 {
+.restults {
   padding: 1rem;
   background: #00494d;
   border-radius: 0.8rem;
+}
+.restults__headings-block {
+  display: grid;
+  grid-template-columns: 30% 1fr;
+  column-gap: 40%;
+  justify-content: space-between;
+  margin-bottom: 2rem;
+  padding-top: 1rem;
+}
+.restults__headings-block__p-heading {
+  color: white;
+}
+.restults__headings-block__span-subHeading {
+  color: #5e7a7d;
+}
+.restults__tip-output {
+  color: #26c0ab;
+  font-size: 1.6rem;
+}
+.restults__total-output {
+  color: #26c0ab;
+  font-size: 1.6rem;
 }
 
 .form {
@@ -170,38 +185,12 @@ The designs were created to the following widths:
   left: 0.6rem;
 }
 
-.headings {
-  display: grid;
-  grid-template-columns: 30% 22%;
-  justify-content: space-between;
-  margin-bottom: 2rem;
-  padding-top: 1rem;
-}
-
-.p-heading {
-  color: white;
-}
-
-.span-subHeading {
-  color: #5e7a7d;
-}
-
-.tip-output {
-  color: #26c0ab;
-  font-size: 1.6rem;
-}
-
-.total-output {
-  color: #26c0ab;
-  font-size: 1.6rem;
-}
-
 .btn-reset {
   display: block;
   width: 100%;
   height: 2.6rem;
-  color: #00494d;
-  background: #7f9c9f;
+  color: rgba(0, 73, 77, 0.658);
+  background: rgba(38, 192, 171, 0.425);
   border: none;
   outline: none;
   font-size: 1.2rem;
@@ -210,10 +199,67 @@ The designs were created to the following widths:
   cursor: pointer;
 }
 
-.btn-reset:active,
-.btn-reset:visited {
+.btn-reset--active {
+  display: block;
+  width: 100%;
+  height: 2.6rem;
+  border: none;
+  outline: none;
+  font-size: 1.2rem;
+  text-transform: capitalize;
+  border-radius: 5px;
+  cursor: pointer;
   color: #00494d;
   background: #26c0ab;
+  transition: all 0.2s ease;
+}
+
+.btn-reset--active:hover {
+  color: #00494d;
+  background: #6ae2d2;
+}
+
+@media screen and (max-width: 450px) {
+  .main-container {
+    width: 20rem;
+  }
+}
+@media screen and (min-width: 1140px) {
+  .main-container {
+    width: 58rem;
+    height: 30rem;
+    background: white;
+    grid-template-columns: 25rem 25rem;
+    column-gap: 2rem;
+    place-items: center;
+    justify-content: center;
+  }
+
+  .calculation-bill {
+    width: 25rem;
+    height: 25rem;
+  }
+
+  .restults {
+    width: 28rem;
+    height: 25rem;
+  }
+
+  .btn-container {
+    grid-template-columns: 1fr 1fr 1fr;
+  }
+
+  .restults__total {
+    font-size: 2.6rem;
+  }
+
+  .restults__headings-block {
+    column-gap: 30%;
+  }
+
+  .margin-big {
+    margin-bottom: 6rem;
+  }
 }
 
 /*# sourceMappingURL=style.css.map */
