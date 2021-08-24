@@ -144,7 +144,15 @@ body {
   cursor: pointer;
 }
 
-.btn-all:hover {
+.btn-all:hover,
+.btn-all:active,
+.btn-all:focus {
+  background-color: #26c0ab;
+  color: #00494d;
+  transition: all 0.2s ease;
+}
+
+.btn-all--active {
   background-color: #26c0ab;
   color: #00494d;
   transition: all 0.2s ease;
@@ -200,15 +208,6 @@ body {
 }
 
 .btn-reset--active {
-  display: block;
-  width: 100%;
-  height: 2.6rem;
-  border: none;
-  outline: none;
-  font-size: 1.2rem;
-  text-transform: capitalize;
-  border-radius: 5px;
-  cursor: pointer;
   color: #00494d;
   background: #26c0ab;
   transition: all 0.2s ease;

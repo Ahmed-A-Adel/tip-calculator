@@ -30,7 +30,7 @@
     <main class="main-container">
       <!-- single article -->
       <article class="calculation-bill article">
-        <form method="GET" class="form">
+        <form action="index.html" method="GET" class="form">
           <div class="form__total-bill">
             <label for="total">bill</label>
             <br />
@@ -47,17 +47,19 @@
           <div class="form__select-tip">
             <label class="form__select-label">select tip %</label>
             <div class="btn-container">
-              <button type="button" class="btn btn-all" data-id="5%">5%</button>
-              <button type="button" class="btn btn-all" data-id="10%">
+              <button type="button" class="btn btn-all" data-id="0.05">
+                5%
+              </button>
+              <button type="button" class="btn btn-all" data-id="0.10">
                 10%
               </button>
-              <button type="button" class="btn btn-all" data-id="15%">
+              <button type="button" class="btn btn-all" data-id="0.15">
                 15%
               </button>
-              <button type="button" class="btn btn-all" data-id="25%">
+              <button type="button" class="btn btn-all" data-id="0.25">
                 25%
               </button>
-              <button type="button" class="btn btn-all" data-id="50%">
+              <button type="button" class="btn btn-all" data-id="0.50">
                 50%
               </button>
               <button type="button" class="btn btn-custom" data-id="custom">
@@ -86,7 +88,7 @@
               >/person</span
             >
           </div>
-          <h3 class="restults__tip-output restults__total">$25.23</h3>
+          <h3 class="restults__tip-output restults__total" id="tip">$25.23</h3>
         </div>
         <div class="restults__headings-block margin-big">
           <div class="restults__headings-block--right">
@@ -95,9 +97,11 @@
               >/person</span
             >
           </div>
-          <h3 class="restults__total-output restults__total">$36.55</h3>
+          <h3 class="restults__total-output restults__total" id="total-tip">
+            $36.55
+          </h3>
         </div>
-        <button type="reset" class="btn-reset" id="-btn-reset">reset</button>
+        <button type="reset" class="btn-reset" id="btn-reset">reset</button>
       </article>
       <!-- end of single article -->
     </main>
