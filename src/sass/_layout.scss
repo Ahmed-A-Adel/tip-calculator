@@ -41,17 +41,26 @@ body {
   border-radius: 2rem;
   background: $White;
 }
-.restults {
+.results {
   padding: 1rem;
   background: $Very-dark-cyan;
   border-radius: 0.8rem;
   &__headings-block {
     display: grid;
     grid-template-columns: 30% 1fr;
-    column-gap: 40%;
+    column-gap: 42%;
     justify-content: space-between;
     margin-bottom: 2rem;
     padding-top: 1rem;
+    &__headings-block--length-2 {
+      column-gap: 37%;
+    }
+    &__headings-block--length-3 {
+      column-gap: 32%;
+    }
+    &__headings-block--length-4 {
+      column-gap: 27%;
+    }
     &__p-heading {
       color: $White;
     }
@@ -114,9 +123,7 @@ body {
   font-size: 1.2rem;
   cursor: pointer;
 }
-.btn-all:hover,
-.btn-all:active,
-.btn-all:focus {
+.btn-all:hover {
   background-color: $primary-color;
   color: $Very-dark-cyan;
   transition: $main-transition;
@@ -151,6 +158,17 @@ body {
   color: $Very-dark-cyan;
   font-size: 1.4rem;
   font-weight: 400;
+}
+.people-input--red {
+  border: 2px solid $red;
+}
+.people-label {
+  float: left;
+  margin-right: 5rem;
+}
+.error-message {
+  color: $red;
+  display: none;
 }
 .person-icon {
   position: absolute;
@@ -199,19 +217,29 @@ body {
     width: 25rem;
     height: 25rem;
   }
-  .restults {
+  .results {
     width: 28rem;
     height: 25rem;
+    &__headings-block {
+      column-gap: 39%;
+    }
+    &__headings-block--length-2 {
+      column-gap: 33%;
+    }
+    &__headings-block--length-3 {
+      column-gap: 27%;
+    }
+    &__headings-block--length-4 {
+      column-gap: 21%;
+    }
+    &__total {
+      font-size: 2.6rem;
+    }
   }
   .btn-container {
     grid-template-columns: 1fr 1fr 1fr;
   }
-  .restults__total {
-    font-size: 2.6rem;
-  }
-  .restults__headings-block {
-    column-gap: 30%;
-  }
+
   .margin-big {
     margin-bottom: 6rem;
   }

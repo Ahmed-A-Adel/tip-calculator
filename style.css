@@ -67,30 +67,39 @@ body {
   background: white;
 }
 
-.restults {
+.results {
   padding: 1rem;
   background: #00494d;
   border-radius: 0.8rem;
 }
-.restults__headings-block {
+.results__headings-block {
   display: grid;
   grid-template-columns: 30% 1fr;
-  column-gap: 40%;
+  column-gap: 42%;
   justify-content: space-between;
   margin-bottom: 2rem;
   padding-top: 1rem;
 }
-.restults__headings-block__p-heading {
+.results__headings-block__headings-block--length-2 {
+  column-gap: 37%;
+}
+.results__headings-block__headings-block--length-3 {
+  column-gap: 32%;
+}
+.results__headings-block__headings-block--length-4 {
+  column-gap: 27%;
+}
+.results__headings-block__p-heading {
   color: white;
 }
-.restults__headings-block__span-subHeading {
+.results__headings-block__span-subHeading {
   color: #5e7a7d;
 }
-.restults__tip-output {
+.results__tip-output {
   color: #26c0ab;
   font-size: 1.6rem;
 }
-.restults__total-output {
+.results__total-output {
   color: #26c0ab;
   font-size: 1.6rem;
 }
@@ -144,9 +153,7 @@ body {
   cursor: pointer;
 }
 
-.btn-all:hover,
-.btn-all:active,
-.btn-all:focus {
+.btn-all:hover {
   background-color: #26c0ab;
   color: #00494d;
   transition: all 0.2s ease;
@@ -185,6 +192,20 @@ body {
   color: #00494d;
   font-size: 1.4rem;
   font-weight: 400;
+}
+
+.people-input--red {
+  border: 2px solid red;
+}
+
+.people-label {
+  float: left;
+  margin-right: 5rem;
+}
+
+.error-message {
+  color: red;
+  display: none;
 }
 
 .person-icon {
@@ -239,21 +260,28 @@ body {
     height: 25rem;
   }
 
-  .restults {
+  .results {
     width: 28rem;
     height: 25rem;
+  }
+  .results__headings-block {
+    column-gap: 39%;
+  }
+  .results__headings-block--length-2 {
+    column-gap: 33%;
+  }
+  .results__headings-block--length-3 {
+    column-gap: 27%;
+  }
+  .results__headings-block--length-4 {
+    column-gap: 21%;
+  }
+  .results__total {
+    font-size: 2.6rem;
   }
 
   .btn-container {
     grid-template-columns: 1fr 1fr 1fr;
-  }
-
-  .restults__total {
-    font-size: 2.6rem;
-  }
-
-  .restults__headings-block {
-    column-gap: 30%;
   }
 
   .margin-big {
