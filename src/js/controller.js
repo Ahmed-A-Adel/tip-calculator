@@ -1,5 +1,5 @@
-import "./model.js";
-import "./view.js";
+import * as model from "./model.js";
+import view from "./view.js";
 const totalInput = document.querySelector("#total");
 const peopleInput = document.querySelector("#people");
 const tip = document.querySelector("#tip");
@@ -9,101 +9,108 @@ const btnAll = document.querySelectorAll(".btn-all");
 const btnReset = document.querySelector(".btn-reset");
 const errorMessage = document.querySelector(".error-message");
 const headings = document.querySelectorAll(".results__headings-block");
-let tipPersent;
-let memo;
-/*
----------++++++++++ Functions +++++++++------------
-*/
-// _______________________________________________________________
-const removeBtnAll = function () {
-  btnAll.forEach((btn) => btn.classList.remove("btn-all--active"));
-};
-removeBtnAll();
-// ________________________________________________________________
-
-// ________________________________________________________________
-const maintainHeadingsGap = function (headings, total) {
-  const totalArr = String(total).split(".");
-  console.log(totalArr[0].length);
-  // console.log(String(total).slice("."), total);
-  headings.forEach((head) => {
-    totalArr[0].length == 2
-      ? head.classList.add("results__headings-block--length-2")
-      : head.classList.remove("results__headings-block--length-2");
-    totalArr[0].length == 3
-      ? head.classList.add("results__headings-block--length-3")
-      : head.classList.remove("results__headings-block--length-3");
-    totalArr[0].length == 4
-      ? head.classList.add("results__headings-block--length-4")
-      : head.classList.remove("results__headings-block--length-4");
-  });
-};
-// ________________________________________________________________
-
-// ________________________________________________________________
-const calcBill = function (bill, tips, people) {
-  const tipAmount = bill * +tips;
-  const person = bill / people;
-  const total = tipAmount / people + person;
-  tip.textContent = totalTip.textContent = "";
-  tip.textContent = `$${tipAmount.toFixed(2)}`;
-  totalTip.textContent = `$${total.toFixed(2)}`;
-  maintainHeadingsGap(headings, total);
-};
-// ________________________________________________________________
-
-// ________________________________________________________________
-const reset = function () {
-  totalInput.value = "";
-  peopleInput.value = "";
-  tip.textContent = `$0.00`;
-  totalTip.textContent = `$0.00`;
-  btnReset.classList.remove("btn-reset--active");
-  peopleInput.classList.remove("people-input--red");
-  errorMessage.style.display = "none";
-  removeBtnAll();
-  tipPersent = memo = "";
-};
-// ________________________________________________________________
+const resetElements = [
+  totalInput,
+  peopleInput,
+  tip,
+  totalTip,
+  btnReset,
+  errorMessage,
+];
 
 /*
 --------++++++++ Event handlers ++++++++-------------
 */
 // ________________________________________________________________
 totalInput.addEventListener("input", function () {
-  const bill = this.value;
-  if (tipPersent && memo) calcBill(bill, tipPersent, memo);
+  try {
+    model.app.bill = this.value;
+    if (!model.app.bill) throw new Error(`bill is undefined`);
 
-  //  prsent buttons handler
-  // ...............................................................
-  btn.addEventListener("click", function (e) {
-    tipPersent = +e.target.dataset.id;
-    // add and remove ative class
-    if (!e.target.classList.contains("btn-all")) return;
-    btnAll.forEach((btn) => btn.classList.remove("btn-all--active"));
-    e.target.classList.add("btn-all--active");
-    //end of add and remove ative class
-    if (!tipPersent) return;
-    if (bill && memo) calcBill(bill, tipPersent, memo);
-  });
-  // ...............................................................
-
-  // ...............................................................
-  peopleInput.addEventListener("input", function () {
-    memo = this.value;
-    if (memo < 1) {
-      peopleInput.classList.add("people-input--red");
-      errorMessage.style.display = "unset";
-    } else {
-      calcBill(bill, tipPersent, memo);
-      btnReset.classList.add("btn-reset--active");
-      peopleInput.classList.remove("people-input--red");
-      errorMessage.style.display = "none";
+    // calculate the bill
+    if (model.app.tipPersent && model.app.perPerson) {
+      model.calcBill(model.app.bill, model.app.tipPersent, model.app.perPerson);
+      // modifying the spaces betwwen the tip headings and the values
+      view.maintaingHeadingsGap(headings, model.app.total);
+      // Render results
+      view.renderTipResults(model.app.tipAmount, model.app.total);
     }
-  });
-  // ...............................................................
+    // ...............................................................
+    btn.addEventListener("click", function (e) {
+      if (!model.app.bill) throw new Error(`tipPersent is undefined`);
+
+      model.app.tipPersent = +e.target.dataset.id;
+      // add and remove ative class
+      if (!e.target.classList.contains("btn-all")) return;
+      btnAll.forEach((btn) => btn.classList.remove("btn-all--active"));
+      e.target.classList.add("btn-all--active");
+      //end of add and remove ative class
+      if (model.app.bill && model.app.perPerson) {
+        model.calcBill(
+          model.app.bill,
+          model.app.tipPersent,
+          model.app.perPerson
+        );
+        // modifying the spaces betwwen the tip headings and the values
+        view.maintaingHeadingsGap(headings, model.app.total);
+        // Render results
+        view.renderTipResults(model.app.tipAmount, model.app.total);
+      }
+    });
+    // ...............................................................
+
+    // ...............................................................
+    peopleInput.addEventListener("input", function () {
+      model.app.perPerson = this.value;
+      if (
+        !model.app.tipPersent ||
+        !model.app.bill ||
+        (!model.app.tipPersent && !model.app.bill)
+      )
+        return;
+
+      if (model.app.perPerson < 1) {
+        //  add red modifire to people input and render error message
+        view.peopleInputLessOrEqualOne(peopleInput, errorMessage);
+      } else {
+        model.calcBill(
+          model.app.bill,
+          model.app.tipPersent,
+          model.app.perPerson
+        );
+        // modifying the spaces betwwen the tip headings and ites values
+        view.maintaingHeadingsGap(headings, model.app.total);
+        // Render the tip and the total results
+        view.renderTipResults(model.app.tipAmount, model.app.total);
+        // add active class to reset button
+        view.peopleInputLessOrEqualOne(
+          peopleInput,
+          errorMessage,
+          true,
+          btnReset
+        );
+      }
+    });
+    // ...............................................................
+  } catch (err) {
+    console.error(err);
+  }
+});
+
+// _________________________________________________________________
+btnReset.addEventListener("click", function () {
+  view.clearModelProperties(model);
+  view.removeBtnAll(btnAll);
+  view.reset(...resetElements);
 });
 // _________________________________________________________________
-btnReset.addEventListener("click", reset);
-// _________________________________________________________________
-reset();
+
+/*
+---------++++++++++ Reset app +++++++++------------
+*/
+// Resterting the app to it's original state after refreshing the page
+view.clearModelProperties(model);
+view.removeBtnAll(btnAll);
+view.reset(...resetElements);
+view.maintaingHeadingsGap(headings, model.app.total);
+view.maintaingHeadingsGap(headings, model.app.total);
