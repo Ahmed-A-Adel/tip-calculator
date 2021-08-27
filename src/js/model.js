@@ -5,6 +5,7 @@ export const app = {
   bill: "",
   tipPersent: "",
   memo: "",
+  PersonShare: "",
 };
 
 export const calcBill = function (bill, tips, people) {
@@ -12,6 +13,5 @@ export const calcBill = function (bill, tips, people) {
   const person = bill / people;
   const total = tipAmount / people + person;
   app.tipAmount = tipAmount;
-  app.perPerson = person;
   app.total = total;
 };

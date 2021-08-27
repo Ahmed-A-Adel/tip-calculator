@@ -29,6 +29,7 @@ totalInput.addEventListener("input", function () {
 
     // calculate the bill
     if (model.app.tipPersent && model.app.perPerson) {
+      // console.log(model.app.bill, model.app.tipPersent, model.app.perPerson);
       model.calcBill(model.app.bill, model.app.tipPersent, model.app.perPerson);
       // modifying the spaces betwwen the tip headings and the values
       view.maintaingHeadingsGap(headings, model.app.total);
@@ -46,6 +47,7 @@ totalInput.addEventListener("input", function () {
       e.target.classList.add("btn-all--active");
       //end of add and remove ative class
       if (model.app.bill && model.app.perPerson) {
+        console.log(model.app.bill, model.app.tipPersent, model.app.perPerson);
         model.calcBill(
           model.app.bill,
           model.app.tipPersent,
@@ -73,6 +75,7 @@ totalInput.addEventListener("input", function () {
         //  add red modifire to people input and render error message
         view.peopleInputLessOrEqualOne(peopleInput, errorMessage);
       } else {
+        // console.log(model.app.bill, model.app.tipPersent, model.app.perPerson);
         model.calcBill(
           model.app.bill,
           model.app.tipPersent,
