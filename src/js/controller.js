@@ -40,23 +40,32 @@ totalInput.addEventListener("input", function () {
     btn.addEventListener("click", function (e) {
       if (!model.app.bill) throw new Error(`tipPersent is undefined`);
 
-      model.app.tipPersent = +e.target.dataset.id;
       // add and remove ative class
       if (!e.target.classList.contains("btn-all")) return;
-      btnAll.forEach((btn) => btn.classList.remove("btn-all--active"));
+      model.app.tipPersent = +e.target.dataset.id;
+      view.removeBtnAll(btnAll);
       e.target.classList.add("btn-all--active");
       //end of add and remove ative class
       if (model.app.bill && model.app.perPerson) {
-        console.log(model.app.bill, model.app.tipPersent, model.app.perPerson);
         model.calcBill(
           model.app.bill,
           model.app.tipPersent,
           model.app.perPerson
         );
+        const ques = model.app.perPerson < 1 ? false : true;
+        // add active class to reset button
+        view.peopleInputLessOrEqualOne(
+          peopleInput,
+          errorMessage,
+          ques,
+          btnReset
+        );
+        if (!ques) return;
         // modifying the spaces betwwen the tip headings and the values
         view.maintaingHeadingsGap(headings, model.app.total);
         // Render results
         view.renderTipResults(model.app.tipAmount, model.app.total);
+        // add active class to reset button
       }
     });
     // ...............................................................
@@ -105,6 +114,7 @@ btnReset.addEventListener("click", function () {
   view.clearModelProperties(model);
   view.removeBtnAll(btnAll);
   view.reset(...resetElements);
+  view.maintaingHeadingsGap(headings, model.app.total);
 });
 // _________________________________________________________________
 
@@ -115,5 +125,4 @@ btnReset.addEventListener("click", function () {
 view.clearModelProperties(model);
 view.removeBtnAll(btnAll);
 view.reset(...resetElements);
-view.maintaingHeadingsGap(headings, model.app.total);
 view.maintaingHeadingsGap(headings, model.app.total);
