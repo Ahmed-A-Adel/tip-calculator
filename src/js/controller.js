@@ -7,8 +7,16 @@ const totalTip = document.querySelector("#total-tip");
 const btn = document.querySelector(".btn-container");
 const btnAll = document.querySelectorAll(".btn-all");
 const btnReset = document.querySelector(".btn-reset");
+const btnCustom = document.querySelector(".btn-custom");
 const errorMessage = document.querySelector(".error-message");
 const headings = document.querySelectorAll(".results__headings-block");
+const overlay = document.querySelector(".popup-overlay");
+const popupBlock = document.querySelectorAll(".popup__input-block");
+const block1 = document.querySelector(".block-1");
+const block2 = document.querySelector(".block-2");
+const tipHidden = document.querySelector("#tip-input");
+const selectHidden = document.querySelector("#tip-select");
+
 const resetElements = [
   totalInput,
   peopleInput,
@@ -16,7 +24,72 @@ const resetElements = [
   totalTip,
   btnReset,
   errorMessage,
+  btnCustom,
+  tipHidden,
+  selectHidden,
 ];
+
+/*
+--------++++++++ Functions ++++++++-------------
+*/
+// _______________________________________________________
+const showTipOrSelect = function (tip, select) {
+  tip.style.opacity = 1;
+  select.style.opacity = 1;
+};
+// _______________________________________________________
+
+// _______________________________________________________
+const btnsFunctionality = function (e = "", custom = false, tipPersent) {
+  if (!model.app.bill) throw new Error(`tipPersent is undefined`);
+  // custom part for deffrent need between all btn and custom btn
+  if (!custom) {
+    if (!e.target.classList.contains("btn-all")) return;
+    model.app.tipPersent = +e.target.dataset.id;
+    // remove active class from all the btns
+    view.removeBtnAll(btnAll);
+    e.target.classList.add("btn-all--active");
+  } else {
+    view.removeBtnAll(btnAll);
+    btnCustom.classList.add("btn-custom--active");
+
+    /* add zero for the less than 10 becaues ex: five persent
+     would be like 0.05 not 0.5 that will be fifteen persent*/
+    tipPersent > 9
+      ? (model.app.tipPersent = +`0.${tipPersent}`)
+      : (model.app.tipPersent = +`0.0${tipPersent}`);
+  }
+  if (model.app.bill && model.app.perPerson) {
+    // calculate the tip amount and the total
+    model.calcBill(model.app.bill, model.app.tipPersent, model.app.perPerson);
+    // set person ture or false or the peopleInputLessurEqualOne Prameter
+    const person = model.app.perPerson < 1 ? false : true;
+    // add active class to reset button
+    view.peopleInputLessOrEqualOne(peopleInput, errorMessage, person, btnReset);
+    if (!person) return;
+    // modifying the spaces betwwen the tip headings and the values
+    view.maintaingHeadingsGap(headings, model.app.total);
+    // Render results
+    view.renderTipResults(model.app.tipAmount, model.app.total);
+    // add active class to reset button
+  }
+};
+// _______________________________________________________
+
+// _______________________________________________________
+const showAndHiddePopup = function (currPop) {
+  if (tipHidden.value !== "" || selectHidden.value !== "") {
+    currPop.classList.contains("block-1")
+      ? (block2.style.opacity = 0)
+      : (block1.style.opacity = 0);
+  }
+  if (tipHidden.value === "" && selectHidden.value === "") {
+    currPop.classList.contains("block-1")
+      ? (block2.style.opacity = 1)
+      : (block1.style.opacity = 1);
+  }
+};
+// _______________________________________________________
 
 /*
 --------++++++++ Event handlers ++++++++-------------
@@ -38,35 +111,7 @@ totalInput.addEventListener("input", function () {
     }
     // ...............................................................
     btn.addEventListener("click", function (e) {
-      if (!model.app.bill) throw new Error(`tipPersent is undefined`);
-
-      // add and remove ative class
-      if (!e.target.classList.contains("btn-all")) return;
-      model.app.tipPersent = +e.target.dataset.id;
-      view.removeBtnAll(btnAll);
-      e.target.classList.add("btn-all--active");
-      //end of add and remove ative class
-      if (model.app.bill && model.app.perPerson) {
-        model.calcBill(
-          model.app.bill,
-          model.app.tipPersent,
-          model.app.perPerson
-        );
-        const ques = model.app.perPerson < 1 ? false : true;
-        // add active class to reset button
-        view.peopleInputLessOrEqualOne(
-          peopleInput,
-          errorMessage,
-          ques,
-          btnReset
-        );
-        if (!ques) return;
-        // modifying the spaces betwwen the tip headings and the values
-        view.maintaingHeadingsGap(headings, model.app.total);
-        // Render results
-        view.renderTipResults(model.app.tipAmount, model.app.total);
-        // add active class to reset button
-      }
+      btnsFunctionality(e);
     });
     // ...............................................................
 
@@ -116,6 +161,27 @@ btnReset.addEventListener("click", function () {
   view.reset(...resetElements);
   view.maintaingHeadingsGap(headings, model.app.total);
 });
+// _________________________________________________________________
+btnCustom.addEventListener("click", function (e) {
+  showTipOrSelect(tipHidden, selectHidden);
+  overlay.classList.remove("popup-overlay--hidden");
+  const submit = document.querySelector(".btn--submit");
+  submit.addEventListener("click", function () {
+    overlay.classList.add("popup-overlay--hidden");
+    block2.style.opacity = block1.style.opacity = 1;
+  });
+});
+popupBlock.forEach((pop) =>
+  pop.addEventListener("input", function (e) {
+    const currPop = e.target.closest(".popup__input-block");
+    let tipPersent;
+    showAndHiddePopup(currPop);
+    currPop.classList.contains("block-1")
+      ? (tipPersent = +tipHidden.value)
+      : (tipPersent = +selectHidden.value);
+    btnsFunctionality(e, true, tipPersent);
+  })
+);
 // _________________________________________________________________
 
 /*

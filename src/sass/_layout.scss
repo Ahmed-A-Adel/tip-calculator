@@ -12,6 +12,9 @@ The designs were created to the following widths:
 - Desktop: 1440px
 */
 body {
+  position: relative;
+}
+.main {
   display: grid;
   grid-template-columns: 1fr;
   grid-template-rows: 8rem 1fr;
@@ -135,10 +138,16 @@ body {
 }
 .btn-custom {
   color: $Dark-grayish-cyan-1;
+  // background: $Light-grayish-cyan-2;
   background: $Light-grayish-cyan-2;
 }
 .btn-custom:hover {
-  background-color: $Dark-grayish-cyan-2;
+  background: $primary-color;
+  color: $White;
+  transition: $main-transition;
+}
+.btn-custom--active {
+  background: $primary-color;
   color: $White;
   transition: $main-transition;
 }
@@ -242,5 +251,113 @@ body {
 
   .margin-big {
     margin-bottom: 6rem;
+  }
+}
+.popup-overlay {
+  // width: 100vw;
+  // height: 100vh;
+  width: 100%;
+  height: 100%;
+  background: rgba($color: #000000, $alpha: 0.3);
+  position: absolute;
+  top: 0;
+  left: 0;
+  justify-content: center;
+  align-items: center;
+  display: flex;
+}
+.popup-overlay--hidden {
+  display: none;
+}
+.popup {
+  width: 25rem;
+  height: 15rem;
+  border-radius: 2px;
+  background: $Dark-grayish-cyan-1;
+  position: relative;
+  top: -3rem;
+  &__input-block {
+    width: 100%;
+    // background: red;
+    height: 40%;
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 2rem;
+    align-items: center;
+    justify-content: space-evenly;
+    transition: $main-transition;
+    opacity: 1;
+
+    &__label {
+      display: block;
+      text-transform: capitalize;
+      color: $White;
+      // background: rgb(202, 100, 100);
+    }
+    &--text {
+      display: block;
+      width: 80%;
+      height: 2rem;
+      justify-self: center;
+      border: 1px $primary-color solid;
+      outline: none;
+      background: none;
+      color: $Very-dark-cyan;
+      font-size: 1.2rem;
+      border-radius: 2px;
+    }
+    &--number {
+      display: block;
+      width: 80%;
+      height: 2rem;
+      justify-self: center;
+      border: 1px $primary-color solid;
+      outline: none;
+      background: none;
+      color: $Very-dark-cyan;
+      font-size: 1.2rem;
+      border-radius: 2px;
+    }
+  }
+}
+.btn--submit {
+  display: block;
+  position: relative;
+  width: 8rem;
+  height: 2rem;
+  margin: 0 auto;
+  bottom: 0.4rem;
+  text-transform: capitalize;
+  background: none;
+  border-right: 5px $primary-color solid;
+  border-left: 2px $primary-color solid;
+  border-top: 1px $primary-color solid;
+  border-bottom: 5px $primary-color solid;
+  color: $White;
+  transition: $main-transition;
+}
+.btn--submit:hover {
+  animation: submit 1.2s 1;
+}
+// animations
+// ______________________________________
+// submit button
+@keyframes submit {
+  0% {
+    background: none;
+    border-right: 5px $primary-color solid;
+    border-left: 2px $primary-color solid;
+    border-top: 1px $primary-color solid;
+    border-bottom: 5px $primary-color solid;
+    color: transparent;
+  }
+
+  100% {
+    background: white;
+    border-right: 5px white solid;
+    border-left: 2px white solid;
+    border-top: 1px white solid;
+    border-bottom: 5px white solid;
+    color: $primary-color;
   }
 }

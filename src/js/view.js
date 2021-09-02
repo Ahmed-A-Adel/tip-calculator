@@ -47,10 +47,20 @@ class CalcTipView {
       errorMessage.style.display = "unset";
     }
   }
-  removeBtnAll(btnAll) {
+  removeBtnAll(btnAll, btnCustom) {
     btnAll.forEach((btn) => btn.classList.remove("btn-all--active"));
   }
-  reset(totalInput, peopleInput, tip, totalTip, btnReset, errorMessage) {
+  reset(
+    totalInput,
+    peopleInput,
+    tip,
+    totalTip,
+    btnReset,
+    errorMessage,
+    btnCustom,
+    tipHidden,
+    selectHidden
+  ) {
     totalInput.value = "";
     peopleInput.value = "";
     tip.textContent = `$0.00`;
@@ -58,6 +68,8 @@ class CalcTipView {
     btnReset.classList.remove("btn-reset--active");
     peopleInput.classList.remove("people-input--red");
     errorMessage.style.display = "none";
+    btnCustom.classList.remove("btn-custom--active");
+    tipHidden.value = selectHidden.value = "";
   }
   clearModelProperties(model) {
     model.app.tipPersent =
