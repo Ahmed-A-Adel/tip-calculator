@@ -42,15 +42,17 @@ const showTipOrSelect = function (tip, select) {
 // _______________________________________________________
 const btnsFunctionality = function (e = "", custom = false, tipPersent) {
   if (!model.app.bill) throw new Error(`tipPersent is undefined`);
+
   // custom part for deffrent need between all btn and custom btn
   if (!custom) {
     if (!e.target.classList.contains("btn-all")) return;
     model.app.tipPersent = +e.target.dataset.id;
+
     // remove active class from all the btns
     view.removeBtnAll(btnAll);
+    btnCustom.classList.remove("btn-custom--active");
     e.target.classList.add("btn-all--active");
   } else {
-    view.removeBtnAll(btnAll);
     btnCustom.classList.add("btn-custom--active");
 
     /* add zero for the less than 10 becaues ex: five persent
@@ -162,7 +164,8 @@ btnReset.addEventListener("click", function () {
   view.maintaingHeadingsGap(headings, model.app.total);
 });
 // _________________________________________________________________
-btnCustom.addEventListener("click", function (e) {
+btnCustom.addEventListener("click", function () {
+  view.removeBtnAll(btnAll);
   showTipOrSelect(tipHidden, selectHidden);
   overlay.classList.remove("popup-overlay--hidden");
   const submit = document.querySelector(".btn--submit");

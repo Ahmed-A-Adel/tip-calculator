@@ -84,13 +84,13 @@ body {
   margin-bottom: 2rem;
   padding-top: 1rem;
 }
-.results__headings-block__headings-block--length-2 {
+.results__headings-block--length-2 {
   column-gap: 37%;
 }
-.results__headings-block__headings-block--length-3 {
+.results__headings-block--length-3 {
   column-gap: 32%;
 }
-.results__headings-block__headings-block--length-4 {
+.results__headings-block--length-4 {
   column-gap: 27%;
 }
 .results__headings-block__p-heading {

@@ -55,13 +55,13 @@ body {
     justify-content: space-between;
     margin-bottom: 2rem;
     padding-top: 1rem;
-    &__headings-block--length-2 {
+    &--length-2 {
       column-gap: 37%;
     }
-    &__headings-block--length-3 {
+    &--length-3 {
       column-gap: 32%;
     }
-    &__headings-block--length-4 {
+    &--length-4 {
       column-gap: 27%;
     }
     &__p-heading {
